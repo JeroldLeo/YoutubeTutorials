@@ -5,7 +5,7 @@ import time
 from map import Map
 
 
-class Game():
+class Game:
     def __init__(self):
         pygame.mixer.pre_init(44100, -16, 1, 512)  # Prevents delay in jumping sound
         pygame.init()
@@ -135,7 +135,8 @@ class Game():
 
     def get_fps(self):
         fps = 0
-        if self.dt: fps = 1 / self.dt
+        if self.dt:
+            fps = 1 / self.dt
         if len(self.fps_list) == 50:
             self.fps_list.pop(0)
         self.fps_list.append(fps)

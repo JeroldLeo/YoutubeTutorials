@@ -5,7 +5,7 @@ import pygame
 from car import Car
 
 
-class Map():
+class Map:
     def __init__(self, game):
         self.game = game
         self.mid_w, self.mid_h = int(self.game.DISPLAY_W / 2), int(self.game.DISPLAY_H / 2)
