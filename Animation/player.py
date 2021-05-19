@@ -1,9 +1,12 @@
 import pygame
+
 from spritesheet import Spritesheet
 
+
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, filename):
         pygame.sprite.Sprite.__init__(self)
+        self.filename = filename
         self.LEFT_KEY, self.RIGHT_KEY, self.FACING_LEFT = False, False, False
         self.load_frames()
         self.rect = self.idle_frames_left[0].get_rect()
@@ -53,32 +56,14 @@ class Player(pygame.sprite.Sprite):
                 elif self.state == 'moving right':
                     self.current_image = self.walking_frames_right[self.current_frame]
 
-
-
     def load_frames(self):
-        my_spritesheet = Spritesheet('poppy_sheet.png')
-        #pygame.image.load('MY_IMAGE_NAME.png').convert()
-        self.idle_frames_left = [my_spritesheet.parse_sprite("poppy_idle1.png"),
-                                 my_spritesheet.parse_sprite("poppy_idle2.png")]
-        self.walking_frames_left = [my_spritesheet.parse_sprite("poppywalk1.png"), my_spritesheet.parse_sprite("poppywalk2.png"),
-                           my_spritesheet.parse_sprite("poppywalk3.png"), my_spritesheet.parse_sprite("poppywalk4.png"),
-                           my_spritesheet.parse_sprite("poppywalk5.png"), my_spritesheet.parse_sprite("poppywalk6.png"),
-                           my_spritesheet.parse_sprite("poppywalk7.png"), my_spritesheet.parse_sprite("poppywalk8.png")]
+        my_spritesheet = Spritesheet(self.filename)
+        # pygame.image.load('MY_IMAGE_NAME.png').convert()
+        self.idle_frames_left = my_spritesheet.parse_sprite('idle')
+        self.walking_frames_left = my_spritesheet.parse_sprite('walk')
         self.idle_frames_right = []
         for frame in self.idle_frames_left:
-            self.idle_frames_right.append( pygame.transform.flip(frame,True, False) )
+            self.idle_frames_right.append(pygame.transform.flip(frame, True, False))
         self.walking_frames_right = []
         for frame in self.walking_frames_left:
             self.walking_frames_right.append(pygame.transform.flip(frame, True, False))
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
-import pygame
 import json
+
+import pygame
 
 
 class Spritesheet:
@@ -10,23 +11,20 @@ class Spritesheet:
         with open(self.meta_data) as f:
             self.data = json.load(f)
         f.close()
-
-
+        self.sprite_name_list = self.data['frames'].keys()
 
     def get_sprite(self, x, y, w, h):
         sprite = pygame.Surface((w, h))
-        sprite.set_colorkey((0,0,0))
-        sprite.blit(self.sprite_sheet,(0, 0),(x, y, w, h))
+        sprite.set_colorkey((0, 0, 0))
+        sprite.blit(self.sprite_sheet, (0, 0), pygame.Rect(x, y, w, h))
         return sprite
 
-    def parse_sprite(self, name):
-        sprite = self.data['frames'][name]['frame']
-        x, y, w, h = sprite["x"], sprite["y"], sprite["w"], sprite["h"]
-        image = self.get_sprite(x, y, w, h)
-        return image
-
-
-
-
-
-
+    def parse_sprite(self, state=None):
+        names = [name for name in self.sprite_name_list if state in name]
+        image_sequence = []
+        print(names)
+        for name in names:
+            sprite = self.data['frames'][name]['frame']
+            x, y, w, h = sprite["x"], sprite["y"], sprite["w"], sprite["h"]
+            image_sequence.append(self.get_sprite(x, y, w, h))
+        return image_sequence

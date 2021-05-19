@@ -1,15 +1,17 @@
 import pygame
+
 from player import Player
+
 ################################# LOAD UP A BASIC WINDOW AND CLOCK #################################
 pygame.init()
 DISPLAY_W, DISPLAY_H = 480, 270
-canvas = pygame.Surface((DISPLAY_W,DISPLAY_H))
-window = pygame.display.set_mode(((DISPLAY_W,DISPLAY_H)))
+canvas = pygame.Surface((DISPLAY_W, DISPLAY_H))
+window = pygame.display.set_mode((DISPLAY_W, DISPLAY_H))
 running = True
 clock = pygame.time.Clock()
 house = pygame.image.load('house.png').convert()
 ################################# LOAD PLAYER ###################################
-cat = Player()
+cat = Player('poppy_sheet.png')
 ################################# GAME LOOP ##########################
 while running:
     clock.tick(60)
@@ -31,17 +33,8 @@ while running:
     ################################# UPDATE/ Animate SPRITE #################################
     cat.update()
     ################################# UPDATE WINDOW AND DISPLAY #################################
-    #canvas.fill((255,255,255))
-    canvas.blit(house, (0,0))
+    # canvas.fill((255,255,255))
+    canvas.blit(house, (0, 0))
     cat.draw(canvas)
-    window.blit(canvas, (0,0))
+    window.blit(canvas, (0, 0))
     pygame.display.update()
-
-
-
-
-
-
-
-
-
