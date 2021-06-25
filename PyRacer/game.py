@@ -33,7 +33,7 @@ class Game:
         self.lap_time = 0
         self.countdown = 3
         self.countdownUpdate = time.time()
-        self.counting_down = True
+        # self.counting_down = True
         self.complete = False
         self.finished_countdown = 0
         self.light_sound.play()
@@ -177,8 +177,8 @@ class Game:
             self.countdownUpdate = now
             self.countdown -= 1
             self.light_sound.play()
-        if self.countdown > 0:
-            self.counting_down = False
+        # if self.countdown > 0:  # ???
+        #     self.counting_down = False
 
     def load_assets(self):
         self.load_directories()

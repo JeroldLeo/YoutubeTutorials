@@ -14,9 +14,10 @@ class Spritesheet:
         self.sprite_name_list = self.data['frames'].keys()
 
     def get_sprite(self, x, y, w, h):
-        sprite = pygame.Surface((w, h))
-        sprite.set_colorkey((0, 0, 0))
-        sprite.blit(self.sprite_sheet, (0, 0), pygame.Rect(x, y, w, h))
+        # sprite = pygame.Surface((w, h))
+        # sprite.set_colorkey((0, 0, 0))
+        # sprite.blit(self.sprite_sheet, (0, 0), pygame.Rect(x, y, w, h))
+        sprite = self.sprite_sheet.subsurface(pygame.Rect(x, y, w, h))
         return sprite
 
     def parse_sprite(self, state=None):
