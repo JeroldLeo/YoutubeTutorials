@@ -23,7 +23,7 @@ class GameWorld(State):
         self.player.render(display)
 
 
-class Player():
+class Player:
     def __init__(self, game):
         self.game = game
         self.load_sprites()
