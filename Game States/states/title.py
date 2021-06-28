@@ -1,4 +1,4 @@
-from states.game_world import Game_World
+from states.gameworld import GameWorld
 from states.state import State
 
 
@@ -8,7 +8,7 @@ class Title(State):
 
     def update(self, delta_time, actions):
         if actions["start"]:
-            new_state = Game_World(self.game)
+            new_state = GameWorld(self.game)
             new_state.enter_state()
         self.game.reset_keys()
 
